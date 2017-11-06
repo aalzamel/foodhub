@@ -2,12 +2,37 @@
 <html>
 <head>
 	<title></title>
+	<style>
+		h1 {
+			text-transform: capitalize;
+			font-family: sans-serif;
+		}
+		h4 {
+			font-family: sans-serif;
+			color: #34495e;
+			text-transform: lowercase;
+		}
+		a:visited {
+			color: #3498db;
+			text-decoration: none;
+		}
+		a {
+			color: #3498db;
+			text-decoration: none;
+		}
+		p {
+			color: #34495e;
+
+		}
+	</style>
 </head>
 <body>
 
 <body>
 <h1> {{item.name}} </h1>
 <p> {{item.description}}</p>
+<p> Opening hours: {{item.opening_time}} - {{item.closing_time}}</p>
+
 <br>
 
 </body>

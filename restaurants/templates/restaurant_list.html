@@ -2,13 +2,37 @@
 <html>
 <head>
 	<title></title>
+	<style>
+		h1 {
+			text-transform: capitalize;
+			font-family: sans-serif;
+			color: #3498db;
+		}
+		h4 {
+			font-family: sans-serif;
+			color: #34495e;
+			text-transform: lowercase;
+		}
+		a:visited {
+			color: #3498db;
+			text-decoration: none;
+		}
+		a {
+			color: #3498db;
+			text-decoration: none;
+		}
+		p {
+			color: #34495e;
+
+		}
+	</style>
 </head>
 <body>
 {% for x in objects_list %}
 <h1> {{x.name}} </h1>
-<h2> {{x.description}}</h2>
-<h2> {{x.opening_time}}</h2>
-<h2> {{x.closing_time}}</h2>
+<p> {{x.description}}</p>
+<p> Opens: {{x.opening_time}}</p>
+<p> Closes: {{x.closing_time}}</p>
 {% endfor %}
 </body>
 </html>
