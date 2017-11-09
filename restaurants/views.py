@@ -24,7 +24,7 @@ def restaurant_create(request):
 	form = RestaurantForm(request.POST or None)
 	if form.is_valid():
 		form.save()
-		return redirect("restaurant_list")
+		return redirect("restaurat_list")
 	context = {
 		"form": form,
 	}
