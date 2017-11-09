@@ -47,6 +47,6 @@ def restaurant_update(request, restaurant_id):
 
 
 def restaurant_delete(request, restaurant_id):
-	Restaurant.object.get(id=restaurant_id).delete()
-	return render("restaurant_list")
+	Restaurant.objects.get(id=restaurant_id).delete()
+	return redirect("restaurat_list")
 
