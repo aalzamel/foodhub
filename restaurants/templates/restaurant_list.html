@@ -6,20 +6,20 @@
 
 <div class="row">
 	{% for x in restaurant_list reversed %}
-	<div class="col-sm-12 col-md-6 col-lg-4 item-mgn">
+	<div class="card-group col-sm-12 col-md-6 col-lg-4 item-mgn">
 	<div class="card">
-	  <div class="card-header">
+	<div class="card-header">
 	    <a href="{{x.get_absolute_url}}"> 
 	    	<br> {{x.name}} </a>
-	  </div>
-	  <div class="card-body">
-	  	    {% if x.logo %}
-    			<img src="{{x.logo.url}}" alt="" class="card-img-top">
-			{% endif %}
+	</div>
+	<div class="card-body">
+	    {% if x.logo %}
+    		<img src="{{x.logo.url}}" alt="" class="card-img-top img-height">
+		{% endif %}
 	    <p class="card-text">
 	    	{{x.description|linebreaks|truncatechars:100}} <br>
-				Open: | {{x.opening_time}} <br>
-				Created | {{x.closing_time}}<br>
+				Opening: | {{x.opening_time}} <br>
+				Closing: | {{x.closing_time}}<br>
 	    </p>
 	    <a href="{% url 'restaurant_detail' restaurant_id=x.id %}" class="btn btn-primary">View</a>
 	    <a href="{% url 'restaurant_update' restaurant_id=x.id %}" class="btn btn-success">Update</a>
@@ -30,6 +30,8 @@
 
 	{% endfor %}
 
+</div>
+	<br>
 	<div class="pagination">
     <span class="step-links">
         {% if restaurant_list.has_previous %}
@@ -44,6 +46,7 @@
             <a href="?page={{ restaurant_list.next_page_number }}">next</a>
         {% endif %}
     </span>
-</div>
 
+</div>
+<br>
 {% endblock content %} 

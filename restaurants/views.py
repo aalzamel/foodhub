@@ -6,7 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 def restaurant_list(request):
 	objects = Restaurant.objects.all()
-	paginator = Paginator(objects, 1) # Show 25 contacts per page
+	paginator = Paginator(objects, 61) # Show 25 contacts per page
 	page = request.GET.get('page')
 	try:
 		objects = paginator.page(page)
