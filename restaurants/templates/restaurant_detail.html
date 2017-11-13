@@ -29,6 +29,9 @@
 <body>
 
 <body>
+	  {% if item.logo %}
+    			<img src="{{item.logo.url}}" alt="" class="card-img-top">
+			{% endif %}
 <h1> {{item.name}} </h1>
 <p> {{item.description}}</p>
 <p> Opening hours: {{item.opening_time}} - {{item.closing_time}}</p>

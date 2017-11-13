@@ -1,38 +1,49 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<style>
-		h1 {
-			text-transform: capitalize;
-			font-family: sans-serif;
-			color: #3498db;
-		}
-		h4 {
-			font-family: sans-serif;
-			color: #34495e;
-			text-transform: lowercase;
-		}
-		a:visited {
-			color: #3498db;
-			text-decoration: none;
-		}
-		a {
-			color: #3498db;
-			text-decoration: none;
-		}
-		p {
-			color: #34495e;
+{% extends "base.html" %}
 
-		}
-	</style>
-</head>
-<body>
-{% for x in objects_list %}
-<h1> {{x.name}} </h1>
-<p> {{x.description}}</p>
-<p> Opens: {{x.opening_time}}</p>
-<p> Closes: {{x.closing_time}}</p>
-{% endfor %}
-</body>
-</html>
+{% block heading %} List {% endblock heading %}
+
+{% block content %} 
+
+<div class="row">
+	{% for x in restaurant_list reversed %}
+	<div class="col-sm-12 col-md-6 col-lg-4 item-mgn">
+	<div class="card">
+	  <div class="card-header">
+	    <a href="{{x.get_absolute_url}}"> 
+	    	<br> {{x.name}} </a>
+	  </div>
+	  <div class="card-body">
+	  	    {% if x.logo %}
+    			<img src="{{x.logo.url}}" alt="" class="card-img-top">
+			{% endif %}
+	    <p class="card-text">
+	    	{{x.description|linebreaks|truncatechars:100}} <br>
+				Open: | {{x.opening_time}} <br>
+				Created | {{x.closing_time}}<br>
+	    </p>
+	    <a href="{% url 'restaurant_detail' restaurant_id=x.id %}" class="btn btn-primary">View</a>
+	    <a href="{% url 'restaurant_update' restaurant_id=x.id %}" class="btn btn-success">Update</a>
+	    <a href="{% url 'restaurant_delete' restaurant_id=x.id %}" class="btn btn-danger">Delete</a>
+	  </div>
+	</div>
+	</div>
+
+	{% endfor %}
+
+	<div class="pagination">
+    <span class="step-links">
+        {% if restaurant_list.has_previous %}
+            <a href="?page={{ restaurant_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ restaurant_list.number }} of {{ restaurant_list.paginator.num_pages }}.
+        </span>
+
+        {% if restaurant_list.has_next %}
+            <a href="?page={{ restaurant_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock content %} 
