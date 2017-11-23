@@ -46,7 +46,7 @@ def userlogin(request):
 			auth = authenticate(username=username, password=password)
 			if auth is not None:
 				login(request, auth)
-				messages.success(request,"You have successfuly signed up")
+				messages.success(request,"You have successfulylogged in")
 				return redirect('restaurant_list')
 			messages.warning(request, "username and password combination incorrect")
 			return redirect('userlogin')
@@ -58,6 +58,7 @@ def userlogin(request):
 
 def userlogout(request):
 	logout(request)
+	messages.warning(request, "logged out successfully")
 	return redirect("userlogin")
 
 
