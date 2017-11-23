@@ -10,20 +10,21 @@
 	<div class="card">
 	<div class="card-header">
 	    <a href="{{x.get_absolute_url}}"> 
-	    	<br> {{x.name}} </a>
+	    	<br> 	    
+	    	{% if x.logo %}
+    		<img src="{{x.logo.url}}" alt="" class="card-img-top">
+		{% endif %}</a>
 	</div>
 	<div class="card-body">
-	    {% if x.logo %}
-    		<img src="{{x.logo.url}}" alt="" class="card-img-top img-height">
-		{% endif %}
+		{{x.name}}
 	    <p class="card-text">
 	    	{{x.description|linebreaks|truncatechars:100}} <br>
 				Opening: | {{x.opening_time}} <br>
 				Closing: | {{x.closing_time}}<br>
 	    </p>
-	    <a href="{% url 'restaurant_detail' restaurant_id=x.id %}" class="btn btn-primary">View</a>
-	    <a href="{% url 'restaurant_update' restaurant_id=x.id %}" class="btn btn-success">Update</a>
-	    <a href="{% url 'restaurant_delete' restaurant_id=x.id %}" class="btn btn-danger">Delete</a>
+	    <a href="{% url 'restaurant_detail' restaurant_slug=x.slug %}" class="btn btn-primary">View</a>
+	    <a href="{% url 'restaurant_update' restaurant_slug=x.slug %}" class="btn btn-success">Update</a>
+	    <a href="{% url 'restaurant_delete' restaurant_slug=x.slug %}" class="btn btn-danger">Delete</a>
 	  </div>
 	</div>
 	</div>
@@ -35,7 +36,7 @@
 	<div class="pagination">
     <span class="step-links">
         {% if restaurant_list.has_previous %}
-            <a href="?page={{ restaurant_list.previous_page_number }}">previous</a>
+            <a href="?page={{ restaurant_list.previous_page_number }}&q={{request.GET.q}}">previous</a>
         {% endif %}
 
         <span class="current">
@@ -43,9 +44,18 @@
         </span>
 
         {% if restaurant_list.has_next %}
-            <a href="?page={{ restaurant_list.next_page_number }}">next</a>
+            <a href="?page={{ restaurant_list.next_page_number }}&q={{request.GET.q}}">next</a>
         {% endif %}
     </span>
+
+</div>
+
+
+<div>
+	
+
+<form class="form-group" action="{% url 'restaurant_list' %}" method="GET">
+	<input  class="textinput textInput form-control item-mgn input-search-color" type="text" name="q" placeholder="Search..." value="{{request.GET.q}}">
 
 </div>
 <br>

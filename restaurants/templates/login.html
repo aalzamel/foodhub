@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	Sign up
+{% endblock heading %}
+
+{% block content %}
+	<div class="postform">
+		<form action="{% url 'userlogin' %}" enctype="multipart/form-data" method="POST">
+			{% csrf_token %}
+			{{form}}
+			<input class="btn btn-primary" type="submit" value="login">
+		</form>
+	</div>
+
+
+{% endblock content %}

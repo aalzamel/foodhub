@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block heading %} Create new item {% endblock heading %}
+{% block content %}
+<form action="{% url 'item_create' %}" enctype="multipart/form-data" method="POST">
+	{% csrf_token %}
+	{{form.as_p}}
+	<input class="btn btn-primary" type="submit" value="Submit">
+</form>
+
+{% endblock content %}
