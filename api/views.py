@@ -25,21 +25,21 @@ class RestaurantDetailAPIView(RetrieveAPIView):
 class RestaurantDeleteAPIView(DestroyAPIView):
 	queryset = Restaurant.objects.all()
 	serializer_class = RestaurantListSerializer
-	permission_classes = [IsAdminUser,]
+	permission_classes = [IsAuthenticated, IsAdminUser,]
 	lookup_field = 'slug'
 	lookup_url_kwarg = 'restaurant_slug'
 
 class RestaurantCreateAPIView(CreateAPIView):
 	queryset = Restaurant.objects.all()
 	serializer_class = RestaurantCreateUpdateSerializer
-	permission_classes = [IsAuthenticated,]
+	permission_classes = [IsAuthenticated, IsAdminUser]
 	
 
 
 class RestaurantUpdateAPIView(RetrieveUpdateAPIView):
 	queryset = Restaurant.objects.all()
 	serializer_class = RestaurantCreateUpdateSerializer
-	permission_classes = [IsAuthenticated,]
+	permission_classes = [IsAuthenticated, IsAdminUser]
 	lookup_field = 'slug'
 	lookup_url_kwarg = 'restaurant_slug'
 	
