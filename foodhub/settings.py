@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'restaurants',
+    'rest_framework',
+    'api',
+
 ]
 
 MIDDLEWARE = [
@@ -100,6 +103,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 2
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
